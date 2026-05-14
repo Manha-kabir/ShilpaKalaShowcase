@@ -22,6 +22,8 @@ class ArtistPortfolioActivity : AppCompatActivity() {
     private lateinit var tvHeritageTitle: TextView
     private lateinit var tvHeritageContent: TextView
     private lateinit var progressHeritage: ProgressBar
+    private lateinit var rvTimeline: RecyclerView
+    private lateinit var tvTimelineTitle: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +48,8 @@ class ArtistPortfolioActivity : AppCompatActivity() {
         rvSculptures.adapter = SculptureAdapter(artist.sculptures, artist.id)
 
         setupTabs()
+        rvTimeline = findViewById(R.id.rvTimeline)
+        tvTimelineTitle = findViewById(R.id.tvTimelineTitle)
     }
 
     private fun setupTabs() {
@@ -69,6 +73,17 @@ class ArtistPortfolioActivity : AppCompatActivity() {
         tabTimeline.setOnClickListener {
             showPanel("timeline")
             setActive(tabTimeline, listOf(tabGallery, tabHeritage))
+
+            // Find first WIP sculpture for this artist
+            val wipSculpture = artist.sculptures.find { it.isWorkInProgress }
+            if (wipSculpture != null) {
+                tvTimelineTitle.text = "Creation of: ${wipSculpture.title}"
+                rvTimeline.layoutManager =
+                    androidx.recyclerview.widget.LinearLayoutManager(this)
+                rvTimeline.adapter = TimelineAdapter(wipSculpture.wipStages)
+            } else {
+                tvTimelineTitle.text = "No work in progress for this artist"
+            }
         }
         tabHeritage.setOnClickListener {
             showPanel("heritage")
