@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ShilpaKalaShowcase</string>
+    <string name="groq_api_key"></string>
+</resources>
