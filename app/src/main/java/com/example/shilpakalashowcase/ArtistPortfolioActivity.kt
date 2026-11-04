@@ -105,7 +105,7 @@ class ArtistPortfolioActivity : AppCompatActivity() {
         tvHeritageContent.text = ""
         progressHeritage.visibility = View.VISIBLE
 
-        val apiKey = "Bearer ${BuildConfig.GROQ_API_KEY}"// paste your key directly here for now
+        val apiKey = "Bearer ${BuildConfig.GROQ_API_KEY}"
 
         val prompt = """
 You are a cultural historian specializing in Indian traditional art.
