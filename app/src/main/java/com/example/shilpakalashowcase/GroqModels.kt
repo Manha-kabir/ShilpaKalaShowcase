@@ -8,12 +8,13 @@ data class GroqMessage(
 )
 
 data class GroqRequest(
-    val model: String = "llama-3.1-8b-instant",
+    val model: String = "openai/gpt-oss-20b",
     val messages: List<GroqMessage>,
     @SerializedName("max_tokens")
-    val maxTokens: Int = 400
+    val maxTokens: Int = 1024,
+    @SerializedName("reasoning_effort")
+    val reasoningEffort: String = "low"
 )
-
 data class GroqChoice(
     val message: GroqMessage
 )

@@ -70,7 +70,7 @@ Rules: Under 6 lines. Include Product ID clearly. Warm professional tone. End wi
                         auth = apiKey,
                         request = GroqRequest(
                             messages = listOf(GroqMessage(role = "user", content = prompt)),
-                            maxTokens = 200
+                            maxTokens = 1024
                         )
                     )
                 }
